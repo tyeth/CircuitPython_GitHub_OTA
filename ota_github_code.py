@@ -18,6 +18,7 @@ def compute_sha1(file_path):
 # Function to compare and update file if needed
 def update_file(file_name):
     local_sha1 = compute_sha1(file_name)
+    #TODO: switch to looking at the whole folder in one go, avoids downloading base64 content unnecessarily
     url = f'https://api.github.com/repos/{REPO}/contents/{BASE_PATH}{file_name}{("" if BRANCH is None else "?ref=" + BRANCH)}'
     response = requests.get(url)
     response_data = response.json()
